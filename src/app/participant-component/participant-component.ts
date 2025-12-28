@@ -44,4 +44,20 @@ export class ParticipantComponent {
 		}
 		this.participantForm().markAsTouched();
 	}
+
+	ammoBump(amt: number) {
+		const current = this.participant();
+		this.edited.emit({
+			...current,
+			ammo: Math.max(0, Math.min(current.ammo + amt, current.maxAmmo)),
+		});
+	}
+
+	reload() {
+		const current = this.participant();
+		this.edited.emit({
+			...current,
+			ammo: current.maxAmmo,
+		});
+	}
 }

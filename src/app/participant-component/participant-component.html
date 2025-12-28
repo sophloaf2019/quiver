@@ -1,4 +1,4 @@
-<div class="w-96 border p-2 border-neutral-300 shadow-md rounded-md">
+<div class="w-full border p-2 border-neutral-300 shadow-md rounded-md">
 	@if (editState() == false) {
 		<div class="flex gap-1 items-center mb-2">
 			<p>
@@ -18,29 +18,47 @@
 			</button>
 		</div>
 
-		<p class="mb-2">{{ participant().ammo }} / {{ participant().maxAmmo }}</p>
+		<p class="mb-2 font-mono">{{ participant().ammo }} / {{ participant().maxAmmo }}</p>
 
 		<div class="flex gap-1 flex-row h-8">
+			<button
+				class="font-mono p-0.5 rounded-md shadow-md h-8 w-8 border border-neutral-300 hover:cursor-pointer active:shadow-none"
+				(click)="ammoBump(-1)"
+			>
+				-
+			</button>
 			@for (count of [].constructor(participant().maxAmmo); track $index) {
 				@if ($index < participant().ammo) {
-					<div class="rounded-md bg-pink-500 flex-1"></div>
+					<div class="rounded-md bg-blue-500 flex-1"></div>
 				} @else {
 					<div class="rounded-md bg-neutral-300 flex-1"></div>
 				}
 			}
+			<button
+				class="font-mono p-0.5 rounded-md shadow-md h-8 w-8 border border-neutral-300 hover:cursor-pointer active:shadow-none"
+				(click)="ammoBump(1)"
+			>
+				+
+			</button>
+			<button
+				class="font-mono p-0.5 rounded-md shadow-md h-8 w-8 border border-neutral-300 hover:cursor-pointer active:shadow-none"
+				(click)="reload()"
+			>
+				R
+			</button>
 		</div>
 	} @else {
 		<form (submit)="editsSubmitted($event)">
 			<label class="block" for="name">Name</label>
 			<input
-				class="block focus:outline-0 focus:ring-1 focus:ring-pink-500 rounded-md border border-neutral-300 mb-2 px-1"
+				class="block focus:outline-0 focus:ring-1 focus:ring-blue-500 rounded-md border border-neutral-300 mb-2 px-1"
 				type="text"
 				[field]="participantForm.name"
 				id="name"
 			/>
 			<label class="block" for="maxAmmo">Max Ammo</label>
 			<input
-				class="block focus:outline-0 focus:ring-1 focus:ring-pink-500 rounded-md border border-neutral-300 mb-2 px-1"
+				class="block focus:outline-0 focus:ring-1 focus:ring-blue-500 rounded-md border border-neutral-300 mb-2 px-1"
 				type="number"
 				[field]="participantForm.maxAmmo"
 				id="maxAmmo"
