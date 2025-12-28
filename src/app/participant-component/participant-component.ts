@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output, signal } from '@angular/core';
 import { Participant } from '../../types/participant';
 
 @Component({
@@ -8,5 +8,10 @@ import { Participant } from '../../types/participant';
 	styleUrl: './participant-component.css',
 })
 export class ParticipantComponent {
-	public participant = input<Participant>();
+	public participant = input.required<Participant>();
+
+	public edited = output<Participant>();
+	public deleted = output<Participant>();
+
+	public editState = signal<boolean>(false);
 }

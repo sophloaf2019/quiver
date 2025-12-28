@@ -1,1 +1,32 @@
-<p>participant works!</p>
+<div class="w-96 border p-2 border-neutral-300 shadow-md rounded-md">
+	@if (editState() == false) {
+		<div class="flex gap-1 items-center mb-2">
+			<p>
+				<strong>{{ participant().name }}</strong>
+			</p>
+			<button
+				class="p-0.5 rounded-md shadow-md border border-neutral-300 hover:cursor-pointer active:shadow-none"
+				(click)="editState.set(!editState())"
+			>
+				✏️
+			</button>
+			<button
+				class="p-0.5 rounded-md shadow-md border border-neutral-300 hover:cursor-pointer active:shadow-none"
+			>
+				🗑️
+			</button>
+		</div>
+
+		<p class="mb-2">{{ participant().ammo }} / {{ participant().maxAmmo }}</p>
+
+		<div class="flex gap-1 flex-row h-8">
+			@for (count of [].constructor(participant().maxAmmo); track $index) {
+				@if ($index < participant().ammo) {
+					<div class="rounded-md bg-pink-500 flex-1"></div>
+				} @else {
+					<div class="rounded-md bg-neutral-300 flex-1"></div>
+				}
+			}
+		</div>
+	}
+</div>
