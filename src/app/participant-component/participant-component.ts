@@ -39,6 +39,7 @@ export class ParticipantComponent {
 	editsSubmitted(e: Event) {
 		e.preventDefault();
 		if (this.participantForm().valid()) {
+			this.participantForm.ammo().value.set(this.participantForm.maxAmmo().value());
 			this.edited.emit(this.participantForm().value());
 			return;
 		}
