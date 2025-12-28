@@ -12,6 +12,7 @@
 			</button>
 			<button
 				class="p-0.5 rounded-md shadow-md border border-neutral-300 hover:cursor-pointer active:shadow-none"
+				(click)="deleted.emit(participant())"
 			>
 				🗑️
 			</button>
@@ -28,5 +29,31 @@
 				}
 			}
 		</div>
+	} @else {
+		<form (submit)="editsSubmitted($event)">
+			<label class="block" for="name">Name</label>
+			<input
+				class="block focus:outline-0 focus:ring-1 focus:ring-pink-500 rounded-md border border-neutral-300 mb-2 px-1"
+				type="text"
+				[field]="participantForm.name"
+				id="name"
+			/>
+			<label class="block" for="maxAmmo">Max Ammo</label>
+			<input
+				class="block focus:outline-0 focus:ring-1 focus:ring-pink-500 rounded-md border border-neutral-300 mb-2 px-1"
+				type="number"
+				[field]="participantForm.maxAmmo"
+				id="maxAmmo"
+			/>
+			<div class="space-x-2">
+				<button
+					type="submit"
+					class="p-0.5 rounded-md shadow-md border border-neutral-300 hover:cursor-pointer active:shadow-none"
+					(click)="editState.set(!editState())"
+				>
+					✔️
+				</button>
+			</div>
+		</form>
 	}
 </div>

@@ -13,6 +13,7 @@ export class App {
 
 	addNewParticipant() {
 		let newOne: Participant = {
+			id: Math.floor(Math.random() * 10000),
 			name: 'New participant',
 			ammo: 1,
 			maxAmmo: 10,
